@@ -1,0 +1,14 @@
+# Normalize line endings: store LF in the repo, keep LF in the working tree.
+# Kills the CRLF<->LF warning churn caused by core.autocrlf=true on Windows.
+# After adding this file, run once:  git add --renormalize .
+* text=auto eol=lf
+
+# Binaries — never touch line endings
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.zip binary
+*.xlsx binary
+*.docx binary

@@ -1,0 +1,22 @@
+{
+  "$comment": "Example MCP server declarations for the optional Slack/Notion handoff mirrors (AGENTS.md Slack/Notion mirroring contract). Copy to .mcp.json and set the env vars to connect - a separate, explicitly-approved step. Mirroring is best-effort and non-blocking: the file-based handoff protocol fully succeeds without either server.",
+  "mcpServers": {
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-slack@2025.4.25"],
+      "env": {
+        "SLACK_BOT_TOKEN": "${SLACK_BOT_TOKEN}",
+        "SLACK_TEAM_ID": "${SLACK_TEAM_ID}",
+        "SLACK_CHANNEL_IDS": "${SLACK_CHANNEL_ID}"
+      }
+    },
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "@notionhq/notion-mcp-server@2.5.2"],
+      "env": {
+        "NOTION_API_KEY": "${NOTION_API_KEY}",
+        "NOTION_DATABASE_ID": "${NOTION_DATABASE_ID}"
+      }
+    }
+  }
+}

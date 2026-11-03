@@ -1,0 +1,22 @@
+*.tmp
+.obsidian/
+.DS_Store
+Thumbs.db
+
+# Raw chat exports and staged third-party source — never commit (personal data, possible secrets)
+00-Inbox/chat-import/
+00-Inbox/source-code-import/
+__pycache__/
+*.pyc
+.env
+
+# Skill clones: keep markdown, never builds/deps
+06-Skills/external/**/node_modules/
+06-Skills/external/**/dist/
+
+# Claude Code local worktrees (git worktree — never commit)
+.claude/worktrees/
+
+# Local MCP config with real server declarations — .example files are tracked
+.mcp.json
+.cursor/mcp.json

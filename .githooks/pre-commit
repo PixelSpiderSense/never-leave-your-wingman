@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Screen the actual staged blobs. A tool error blocks the commit.
+set -eu
+vault_root=$(git --no-pager rev-parse --show-toplevel)
+exec python "$vault_root/scripts/check_staged_secrets.py"
