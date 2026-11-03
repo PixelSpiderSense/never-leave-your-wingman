@@ -1,0 +1,24 @@
+# Never Leave Your Wingman
+
+> An open-source, file-based "second brain" starter for AI coding agents. One set of rules
+> (AGENTS.md), reusable skills, agent handoffs and prompt-injection defences, kept as plain
+> markdown in git. Works with Claude Code, Codex, Cursor, Gemini CLI and any agent that reads
+> AGENTS.md. MIT licensed.
+
+## Docs
+- [README](https://github.com/PixelSpiderSense/never-leave-your-wingman/blob/master/README.md): what it is, quick start, FAQ
+- [AGENTS.md](https://github.com/PixelSpiderSense/never-leave-your-wingman/blob/master/AGENTS.md): the shared rules every agent reads
+- [GLOBAL-AGENTS.md](https://github.com/PixelSpiderSense/never-leave-your-wingman/blob/master/GLOBAL-AGENTS.md): the same rules at user level
+- [SETUP.md](https://github.com/PixelSpiderSense/never-leave-your-wingman/blob/master/SETUP.md): how each tool loads the rules
+
+## Key facts
+- Rules live in AGENTS.md; CLAUDE.md and GEMINI.md contain only `@AGENTS.md`.
+- Five agent roles (ceo, coder, memory, reviewer, scribe) hand work off through inbox/outbox notes.
+- Eleven skills as plain SKILL.md files in .claude/skills/.
+- Safety: untrusted-input policy, scripts/scan_untrusted.py, scripts/check_staged_secrets.py,
+  a pre-commit hook, and confirm-exact-content-before-saving rules for memory and config.
+- No accounts or hosted services. Slack and Notion mirrors are optional and off by default.
+
+## Optional
+- [NOTICE](https://github.com/PixelSpiderSense/never-leave-your-wingman/blob/master/NOTICE.md): third-party attributions
+- [LICENSE](https://github.com/PixelSpiderSense/never-leave-your-wingman/blob/master/LICENSE): MIT

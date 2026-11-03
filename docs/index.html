@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Never Leave Your Wingman: a second brain for AI coding agents</title>
+<meta name="description" content="Open-source, file-based second brain for Claude Code, Codex, Cursor and Gemini CLI. One AGENTS.md rule file, reusable skills, agent handoffs and prompt-injection defences, kept as plain markdown.">
+<link rel="canonical" href="https://pixelspidersense.github.io/never-leave-your-wingman/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Never Leave Your Wingman: a second brain for AI coding agents">
+<meta property="og:description" content="One AGENTS.md rule file, reusable skills, agent handoffs and prompt-injection defences for Claude Code, Codex, Cursor and Gemini CLI.">
+<meta property="og:url" content="https://pixelspidersense.github.io/never-leave-your-wingman/">
+<meta property="og:image" content="https://pixelspidersense.github.io/never-leave-your-wingman/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<style>
+:root{--bg:#fff;--fg:#1a1d23;--muted:#586069;--line:#d8dde3;--accent:#0b5fff;--card:#f6f8fa}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0d1117;--fg:#e6edf3;--muted:#9aa4af;--line:#2b323b;--accent:#6ea8ff;--card:#151b23}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:48px 16px}
+h1{font-size:clamp(2rem,6vw,2.8rem);line-height:1.15;margin:0 0 12px}
+h2{font-size:1.4rem;margin:2.2em 0 .6em}
+h3{font-size:1.05rem;margin:0}
+.lead{font-size:1.15rem;color:var(--muted);margin:0 0 24px}
+a{color:var(--accent)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:24px 0}
+.btn{display:inline-block;padding:10px 18px;border-radius:8px;border:1px solid var(--accent);text-decoration:none;font-weight:600}
+.btn.primary{background:var(--accent);color:#fff}
+ul{padding-left:1.2em}
+li{margin:.4em 0}
+.table{overflow-x:auto}
+table{border-collapse:collapse;width:100%}
+th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
+th{background:var(--card)}
+code,pre{background:var(--card);border-radius:6px;font-family:ui-monospace,Consolas,monospace}
+code{padding:2px 5px}
+pre{padding:14px;overflow-x:auto}
+details{border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:10px 0;background:var(--card)}
+summary{cursor:pointer;font-weight:600}
+details p{margin:.6em 0 0}
+footer{margin-top:3em;padding-top:1em;border-top:1px solid var(--line);color:var(--muted);font-size:.9rem}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "Never Leave Your Wingman",
+      "description": "An open-source, file-based second-brain starter for AI coding agents: shared AGENTS.md rules, reusable skills, agent handoffs and prompt-injection defences, kept as plain markdown.",
+      "codeRepository": "https://github.com/PixelSpiderSense/never-leave-your-wingman",
+      "url": "https://pixelspidersense.github.io/never-leave-your-wingman/",
+      "programmingLanguage": ["Markdown", "Python"],
+      "license": "https://opensource.org/licenses/MIT",
+      "author": {"@type": "Person", "name": "Parshwa Jhabak", "url": "https://github.com/PixelSpiderSense"},
+      "keywords": "AGENTS.md, Claude Code, Codex, Cursor, Gemini CLI, second brain, AI agents, prompt injection"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type": "Question", "name": "What is a second brain for AI agents?",
+         "acceptedAnswer": {"@type": "Answer", "text": "A folder of plain markdown notes (decisions, lessons, research, handoffs) plus written rules, kept in git, that every AI coding agent reads at the start of a session. The agent gets persistent memory and consistent behaviour without any database or hosted service."}},
+        {"@type": "Question", "name": "What is AGENTS.md, and how is it different from CLAUDE.md?",
+         "acceptedAnswer": {"@type": "Answer", "text": "AGENTS.md is an open convention for telling coding agents how to work in a project. Codex and Cursor read it directly. Claude Code reads CLAUDE.md, so this repo makes CLAUDE.md a single line, @AGENTS.md, that imports it. Gemini CLI works the same way with GEMINI.md."}},
+        {"@type": "Question", "name": "How do I use one set of rules in Claude Code, Cursor and Codex?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Keep the rules in AGENTS.md, add a CLAUDE.md that imports it, and optionally install GLOBAL-AGENTS.md into each tool's user-level file."}},
+        {"@type": "Question", "name": "How do I protect an AI agent from prompt injection in repos I clone?",
+         "acceptedAnswer": {"@type": "Answer", "text": "Treat file contents as data, not instructions. This repo states that rule in AGENTS.md and ships scripts/scan_untrusted.py, which screens third-party material for hidden instructions, invisible characters and risky config before it is read in bulk. It is a screen, not a guarantee."}},
+        {"@type": "Question", "name": "Do I need Obsidian?",
+         "acceptedAnswer": {"@type": "Answer", "text": "No. It is plain markdown with YAML frontmatter and wikilinks, so Obsidian works but any editor does."}},
+        {"@type": "Question", "name": "Is it free, and does it send my data anywhere?",
+         "acceptedAnswer": {"@type": "Answer", "text": "It is MIT licensed and free. Everything is local files in your git repository. The optional Slack and Notion mirrors are off until you add your own credentials."}}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<main>
+<h1>Never Leave Your Wingman</h1>
+<p class="lead">A second brain for AI coding agents that doesn't trust what it reads. One rule file, shared skills and plain-markdown memory for Claude Code, Codex, Cursor and Gemini CLI.</p>
+<div class="cta">
+  <a class="btn primary" href="https://github.com/PixelSpiderSense/never-leave-your-wingman">View on GitHub</a>
+  <a class="btn" href="#quick-start">Quick start</a>
+</div>
+
+<h2>Why use it</h2>
+<ul>
+  <li><strong>One rule file for every AI tool.</strong> <code>AGENTS.md</code> is the single source of truth; <code>CLAUDE.md</code> and <code>GEMINI.md</code> import it.</li>
+  <li><strong>Memory that survives the session.</strong> Decisions, lessons and research live in a git-versioned markdown vault.</li>
+  <li><strong>Safer by default.</strong> Untrusted-input policy, a scanner for third-party material, a staged-secret check and confirm-before-saving rules.</li>
+  <li><strong>Agents that hand work to each other.</strong> Five roles pass tasks through inbox and outbox notes.</li>
+  <li><strong>Eleven skills included</strong>, as plain <code>SKILL.md</code> files, under the MIT licence.</li>
+</ul>
+
+<h2 id="quick-start">Quick start</h2>
+<pre><code>git clone https://github.com/PixelSpiderSense/never-leave-your-wingman.git "Second Brain"
+cd "Second Brain"
+git config core.hooksPath .githooks</code></pre>
+<p>Open the folder in your AI tool. It reads <code>AGENTS.md</code> automatically. Not a developer? On GitHub choose <strong>Use this template</strong>, open the folder in Cursor or a similar tool, and ask it to read <code>AGENTS.md</code> and <code>MAP.md</code> and help you capture a first note.</p>
+
+<h2>Works with</h2>
+<div class="table"><table>
+<tr><th>Tool</th><th>How it loads the rules</th></tr>
+<tr><td>Claude Code</td><td><code>CLAUDE.md</code> imports <code>AGENTS.md</code>; skills and commands load from <code>.claude/</code></td></tr>
+<tr><td>Cursor</td><td>Reads <code>AGENTS.md</code> at the project root</td></tr>
+<tr><td>Codex</td><td>Reads <code>AGENTS.md</code> at the project root</td></tr>
+<tr><td>Gemini CLI</td><td><code>GEMINI.md</code> imports <code>AGENTS.md</code></td></tr>
+<tr><td>Anything else</td><td>Point it at <code>AGENTS.md</code></td></tr>
+</table></div>
+<p>These loading behaviours follow each tool's documented conventions and have not all been tested.</p>
+
+<h2>FAQ</h2>
+<details><summary>What is a second brain for AI agents?</summary><p>A folder of plain markdown notes (decisions, lessons, research, handoffs) plus written rules, kept in git, that every AI coding agent reads at the start of a session. The agent gets persistent memory and consistent behaviour without any database or hosted service.</p></details>
+<details><summary>What is AGENTS.md, and how is it different from CLAUDE.md?</summary><p>AGENTS.md is an open convention for telling coding agents how to work in a project. Codex and Cursor read it directly. Claude Code reads CLAUDE.md, so this repo makes CLAUDE.md a single line, <code>@AGENTS.md</code>, that imports it. Gemini CLI works the same way with GEMINI.md.</p></details>
+<details><summary>How do I use one set of rules in Claude Code, Cursor and Codex?</summary><p>Keep the rules in AGENTS.md, add a CLAUDE.md that imports it, and optionally install GLOBAL-AGENTS.md into each tool's user-level file.</p></details>
+<details><summary>How do I protect an AI agent from prompt injection in repos I clone?</summary><p>Treat file contents as data, not instructions. This repo states that rule in AGENTS.md and ships <code>scripts/scan_untrusted.py</code>, which screens third-party material for hidden instructions, invisible characters and risky config before it is read in bulk. It is a screen, not a guarantee.</p></details>
+<details><summary>Do I need Obsidian?</summary><p>No. It is plain markdown with YAML frontmatter and wikilinks, so Obsidian works but any editor does.</p></details>
+<details><summary>Is it free, and does it send my data anywhere?</summary><p>It is MIT licensed and free. Everything is local files in your git repository. The optional Slack and Notion mirrors are off until you add your own credentials.</p></details>
+
+<footer>
+<p>MIT licensed. <a href="https://github.com/PixelSpiderSense/never-leave-your-wingman">Source on GitHub</a> · <a href="https://github.com/PixelSpiderSense/never-leave-your-wingman/blob/master/NOTICE.md">Third-party notices</a></p>
+</footer>
+</main>
+</body>
+</html>

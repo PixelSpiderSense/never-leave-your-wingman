@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite it as below."
+title: "Never Leave Your Wingman"
+abstract: "An open-source, file-based second-brain starter for AI coding agents: shared AGENTS.md rules, reusable skills, agent handoffs and prompt-injection defences, kept as plain markdown."
+type: software
+authors:
+  - family-names: Jhabak
+    given-names: Parshwa
+repository-code: "https://github.com/PixelSpiderSense/never-leave-your-wingman"
+license: MIT
+keywords:
+  - ai-agents
+  - agents-md
+  - claude-code
+  - codex
+  - cursor
+  - second-brain
+  - prompt-injection
+date-released: "2026-11-03"
